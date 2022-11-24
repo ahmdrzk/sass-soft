@@ -1,0 +1,11 @@
+.link {
+  @include link;
+}
+
+.footer-link {
+  @include footer-link;
+}
+
+.border-bottom-dotted {
+  border-bottom: 0.1rem dotted $text-color;
+}

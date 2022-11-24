@@ -1,0 +1,35 @@
+.arrows-bef-aft-btn {
+  /* Establish a containing block for pseudo elements to move them around. */
+  position: relative;
+  /* Hide the overflowing content and define enough padding values to show the after pseudo element and hide the before pseudo element on initial state. */
+  overflow: hidden;
+  /* Padding is needed to show pseudo element which is absolutely positioned. */
+  padding: 1rem 6rem 1rem 1rem;
+  color: $color-white;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 2rem;
+  font-weight: 500;
+  transition: $transition--1;
+
+  &::before {
+    content: "\2192";
+    position: absolute;
+    transform: translate(-145%, -35%);
+    color: currentColor;
+    font-size: 3.7rem;
+  }
+
+  &::after {
+    content: "\2192";
+    position: absolute;
+    transform: translate(45%, -35%);
+    color: currentColor;
+    font-size: 3.7rem;
+  }
+
+  &:hover {
+    padding-left: 6rem;
+    padding-right: 0;
+  }
+}

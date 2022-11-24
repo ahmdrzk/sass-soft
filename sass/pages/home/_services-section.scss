@@ -1,0 +1,107 @@
+// -------------------------1------------------------- //
+
+.services-section {
+  /* Placement in the global grid layout that is defined in _base.scss. */
+  grid-column: full-start / full-end;
+  /* Subgrid definition for section contents. It has the same columns as the global grid layout. */
+  display: grid;
+  @include grid-columns;
+  padding: 8rem 0 4rem 0;
+
+  // -------------------------2------------------------- //
+  &__header {
+    @include header-h6-h2;
+  }
+
+  // -------------------------2------------------------- //
+  &__service-cards {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+    /* Another subgrid definition for service cards. */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    gap: 3rem;
+
+    @include media-respond($bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // -------------------------2------------------------- //
+  &__footer {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+    margin: 4rem 0 6rem 0;
+    text-align: center;
+  }
+
+  // -------------------------2------------------------- //
+  &__customer-brands {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+    /* Another subgrid definition for customer brands. */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+    column-gap: 3rem;
+    row-gap: 2rem;
+  }
+}
+
+// -------------------------1------------------------- //
+
+.service-card {
+  background-color: $color-primary--light-3;
+  padding: 10%;
+  text-align: center;
+
+  // -------------------------2------------------------- //
+  & > .heading-3 {
+    color: $text-color--dark;
+  }
+
+  // -------------------------2------------------------- //
+  &__service-icon {
+    /* Align the svg icon and the span vertically in a flex container. */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem auto;
+
+    & > svg {
+      height: 8rem;
+      transition: $transition--3;
+    }
+
+    & > span {
+      display: inline-block;
+      margin-top: 0.8rem;
+      width: 6.6rem;
+      height: 0.8rem;
+      border-radius: 100%;
+      background-color: rgba($color-primary--light-2, 0.2);
+      transition: $transition--3;
+    }
+  }
+
+  // -------------------------2------------------------- //
+  &:hover &__service-icon svg {
+    transform: translateY(-2rem) rotate(8deg);
+
+    & + span {
+      transform: scale(0.75);
+    }
+  }
+
+  // -------------------------2------------------------- //
+  @include media-respond($bp-sm) {
+    padding: 5%;
+  }
+}
+
+// -------------------------1------------------------- //
+
+.brand__img {
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,231 @@
+// -------------------------1------------------------- //
+
+.users-section {
+  /* Placement in the global grid layout that is defined in _base.scss. */
+  grid-column: full-start / full-end;
+  /* Subgrid definition for section contents. It has the same columns as the global grid layout. */
+  display: grid;
+  @include grid-columns;
+  background-image: linear-gradient(to top, $color-primary--light-3, $color-white),
+    url("/assets/images/background-images/bg-users-section.jpg");
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  padding-bottom: 6rem;
+
+  // -------------------------2------------------------- //
+  &__map {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+  }
+
+  // -------------------------2------------------------- //
+  &__contact-options {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    border-radius: $border-radius--rg;
+    box-shadow: $shadow--1;
+    margin-top: -8rem;
+    background-color: rgba($color-white, 0.9);
+    padding: 5% 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -0.8rem;
+      transform: translateX(1%);
+      width: 98%;
+      height: 0.8rem;
+      border-radius: 0 0 $border-radius--rg $border-radius--rg;
+      background-color: rgba($color-primary--light-2, 0.2);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -1.6rem;
+      transform: translateX(2%);
+      width: 96%;
+      height: 0.8rem;
+      border-radius: 0 0 $border-radius--rg $border-radius--rg;
+      background-color: rgba($color-primary--light-2, 0.4);
+    }
+
+    @include media-respond($bp-sm) {
+      margin-top: -2rem;
+    }
+  }
+
+  // -------------------------2------------------------- //
+  &__footer {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+    margin-top: 4rem;
+    text-align: center;
+  }
+}
+
+// -------------------------1------------------------- //
+
+.map {
+  position: relative;
+  margin: auto;
+  max-width: 92.5rem;
+
+  // -------------------------2------------------------- //
+  &__user {
+    position: absolute;
+    cursor: pointer;
+  }
+}
+
+// -------------------------1------------------------- //
+
+.user {
+  // -------------------------2------------------------- //
+  &__img {
+    /* Make "user__img" has a higher stacking order than the ::before pseudo element of "user". */
+    position: relative;
+    max-width: 3rem;
+    max-height: 3rem;
+  }
+
+  // -------------------------2------------------------- //
+  &::before {
+    content: "";
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: $color-primary--light-1;
+    animation: pin-on-map 2s infinite;
+  }
+
+  // -------------------------2------------------------- //
+  &--1 {
+    @extend .user;
+    top: -2%;
+    left: 34%;
+  }
+  &--2 {
+    @extend .user;
+    top: 30%;
+    left: 24%;
+  }
+  &--3 {
+    @extend .user;
+    top: 30%;
+    left: 47%;
+  }
+  &--4 {
+    @extend .user;
+    top: 20%;
+    left: 60%;
+  }
+  &--5 {
+    @extend .user;
+    top: 10%;
+    left: 10%;
+  }
+  &--6 {
+    @extend .user;
+    top: 20%;
+    left: 30%;
+  }
+  &--7 {
+    @extend .user;
+    top: 42%;
+    left: 70%;
+  }
+  &--8 {
+    @extend .user;
+    top: 40%;
+    left: 55%;
+  }
+  &--9 {
+    @extend .user;
+    top: 60%;
+    left: 30%;
+  }
+  &--10 {
+    @extend .user;
+    left: 80%;
+    top: 15%;
+  }
+}
+
+// -------------------------1------------------------- //
+
+.contact-option {
+  flex: 1 1 25rem;
+  position: relative;
+  padding: 0 5%;
+
+  // -------------------------2------------------------- //
+  &:first-of-type::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0.1rem;
+    height: 100%;
+    background-color: $border-color--1;
+  }
+
+  // -------------------------2------------------------- //
+  &__link-container {
+    /* Another subgrid definition for the contact option container. */
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    row-gap: 1rem;
+    column-gap: 5%;
+  }
+
+  // -------------------------2------------------------- //
+  & .heading-3 {
+    @include arrow-after-btn;
+    /* Placement in the contact option container. */
+    grid-column: 1;
+    grid-row: 1;
+    color: $text-color--dark;
+    margin: 0;
+  }
+
+  // -------------------------2------------------------- //
+  & .para {
+    /* Placement in the contact option container. */
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  // -------------------------2------------------------- //
+  &__icon {
+    /* Placement in the contact option container. */
+    grid-column: 2;
+    grid-row: 1 / 3;
+    width: 6.4rem;
+    height: 6.4rem;
+  }
+
+  // -------------------------2------------------------- //
+  &:hover .heading-3 {
+    @include arrow-after-btn-hover;
+  }
+
+  &:hover &__icon {
+    animation: 1s infinite shake-icon;
+  }
+
+  // -------------------------2------------------------- //
+  @include media-respond($bp-sm) {
+    &:first-child {
+      margin-bottom: 2rem;
+    }
+  }
+}

@@ -1,0 +1,108 @@
+// -------------------------1------------------------- //
+
+.studies-section {
+  /* Placement in the global grid layout that is defined in _base.scss. */
+  grid-column: full-start / full-end;
+  /* Subgrid definition for section contents. It has the same columns as the global grid layout. */
+  display: grid;
+  @include grid-columns;
+  background-color: $color-primary--dark-2;
+
+  // -------------------------2------------------------- //
+  &__header {
+    @include header-h6-h2;
+
+    & > .heading-6 {
+      color: $color-primary--light-1;
+    }
+
+    & > .heading-2 {
+      color: $color-white;
+    }
+  }
+
+  // -------------------------2------------------------- //
+  &__project-cards {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+    /* Another subgrid definition for project cards. */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+    gap: 3rem;
+    margin-bottom: -4.5rem;
+  }
+
+  // -------------------------2------------------------- //
+  &__footer {
+    /* Placement in the section subgrid layout. */
+    grid-column: full-start / full-end;
+    grid-row: 3;
+    background-image: linear-gradient(to bottom, $color-primary--light-3, $color-white);
+    padding-top: 10rem;
+    padding-bottom: 6rem;
+    text-align: center;
+  }
+}
+
+// -------------------------1------------------------- //
+
+.project {
+  /* Establish a containing block for "project__back-img" to insert it as a background image in "project" container. */
+  position: relative;
+  min-height: 20rem;
+  overflow: hidden;
+  border-radius: $border-radius--rg;
+  box-shadow: $shadow--2;
+  text-align: center;
+  transition: $transition--1;
+
+  // -------------------------2------------------------- //
+  &__link-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* put it in a higher stacking order, to make the whole container clickable. */
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 1rem 15%;
+  }
+
+  // -------------------------2------------------------- //
+  & .heading-3 {
+    color: $color-white;
+  }
+
+  // -------------------------2------------------------- //
+  &__brand-img {
+    margin-top: 1rem;
+  }
+
+  // -------------------------2------------------------- //
+  &__back-img {
+    /* Absolutely position the image to be a background image for the "project" container. */
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+    filter: grayscale(100%);
+  }
+
+  // -------------------------2------------------------- //
+  &:nth-of-type(1) {
+    background-color: #71cbcc;
+  }
+
+  &:nth-of-type(2) {
+    background-color: #3ea9f5;
+  }
+
+  &:nth-of-type(3) {
+    background-color: #8a49a1;
+  }
+
+  &:hover {
+    transform: translateY(-0.6rem);
+  }
+}

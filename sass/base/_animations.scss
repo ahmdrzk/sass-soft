@@ -1,0 +1,88 @@
+@keyframes shake-icon {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pin-on-map {
+  0% {
+    transform: scale(1);
+  }
+
+  90% {
+    transform: scale(2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.35);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-show-text {
+  0% {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+
+  /* Takes 2% to enter. */
+  1% {
+    transform: translateX(5%);
+    opacity: 0.5;
+  }
+
+  4%,
+  25% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  /* Takes 5% to exit. */
+  /* It will have an effect as if the next slide pushes the previous one, because it arrives to position while the previous one is still there for 3%. */
+
+  /* From 30% to 100% is the same in order to leave a time gap between each iteration. */
+  30% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+}

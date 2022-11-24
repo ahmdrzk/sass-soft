@@ -1,0 +1,108 @@
+// -------------------------1------------------------- //
+
+.company-section {
+  /* Placement in the global grid layout that is defined in _base.scss. */
+  grid-column: full-start / full-end;
+  /* Subgrid definition for section contents. It has the same columns as the global grid layout. */
+  display: grid;
+  @include grid-columns;
+  background-color: $color-primary--dark-1;
+  padding-top: 8rem;
+
+  // -------------------------2------------------------- //
+  &__header {
+    @include header-h6-h2-para;
+  }
+
+  // -------------------------2------------------------- //
+  &__info-figures {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+    grid-row: 2;
+    /* Another subgrid definition for info figures. */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+    gap: 3rem;
+    position: relative;
+    margin-bottom: -8rem;
+
+    @include media-respond($bp-sm) {
+      grid-template-columns: 100%;
+    }
+  }
+
+  // -------------------------2------------------------- //
+  &__footer {
+    /* Placement in the section subgrid layout. */
+    grid-column: full-start / full-end;
+    grid-row: 3;
+    background-color: $color-primary--light-3;
+    /* Higher padding value on top to leave empty space for the info figures with negative bottom margin. */
+    margin-top: rem;
+    padding: 14rem 1.5rem 6rem 1.5rem;
+    text-align: center;
+  }
+}
+
+// -------------------------1------------------------- //
+
+.info-figure {
+  cursor: pointer;
+
+  // -------------------------2------------------------- //
+  &__img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  // -------------------------2------------------------- //
+  &__caption {
+    position: relative;
+    margin: -7rem auto 0 auto;
+    width: 80%;
+    box-shadow: $shadow--1;
+    background-color: $color-white;
+    padding: 2rem;
+    text-align: center;
+    transition: $transition--1;
+
+    /* The three properties (display: block;  height: 0; overflow: hidden;) are required to hide an element and remove its space from the layout. */
+    /* display: block; and overflow: hidden; are applied on all child elements. height: 0; is applied on the child element with an out-of-flow state. */
+    & > * {
+      display: block;
+      overflow: hidden;
+      transition: $transition--1;
+    }
+
+    .heading-5 {
+      height: 2.4rem;
+      color: $color-primary--light-1;
+      /* Fix text flickering on transition. */
+      will-change: transform;
+    }
+
+    .heading-3 {
+      margin: 0.4rem 0;
+      color: $text-color--dark;
+    }
+
+    & > :last-child {
+      @include arrow-after-static;
+      height: 0;
+    }
+  }
+
+  // -------------------------2------------------------- //
+  &:hover .info-figure__caption {
+    box-shadow: $shadow--2;
+
+    & > .heading-5 {
+      height: 0;
+      transform: translateY(-100%);
+    }
+
+    & > :last-child {
+      height: 2.4rem;
+    }
+  }
+}

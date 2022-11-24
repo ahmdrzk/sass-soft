@@ -1,0 +1,138 @@
+// -------------------------1------------------------- //
+
+.blog-section {
+  /* Placement in the global grid layout that is defined in _base.scss. */
+  grid-column: full-start / full-end;
+  /* Subgrid definition for section contents. It has the same columns as the global grid layout. */
+  display: grid;
+  @include grid-columns;
+  padding: 8rem 0;
+
+  // -------------------------2------------------------- //
+  &__header {
+    @include header-h6-h2;
+  }
+
+  // -------------------------2------------------------- //
+  &__articles {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+    /* Another subgrid definition for blog article cards. */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+
+    @include media-respond($bp-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  // -------------------------2------------------------- //
+  &__footer {
+    /* Placement in the section subgrid layout. */
+    grid-column: center-start / center-end;
+    margin-top: 4rem;
+    text-align: center;
+  }
+}
+
+// -------------------------1------------------------- //
+
+.article-card {
+  overflow: hidden;
+  border-radius: $border-radius--rg;
+  background-color: $color-primary--light-3;
+
+  // -------------------------2------------------------- //
+  /* Placement of the large article card. */
+  &:first-of-type {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  /* Placement of the small article cards. */
+  &:nth-of-type(2),
+  &:nth-of-type(3),
+  &:nth-of-type(4),
+  &:nth-of-type(5) {
+    grid-column: span 1;
+  }
+
+  // -------------------------2------------------------- //
+  /* The "article-card__link-container" class exists only in small article cards. */
+  &__link-container {
+    /* Expand the container to make its contents occupy the full height. */
+    height: 100%;
+
+    /* For small article cards (where "article-card__link-container" class exists), we want the first child (heading) to occupy as much height as possible, pushing down all other elements (date). */
+    & [class*="heading"] {
+      flex-grow: 1;
+    }
+    /* Visually insert the date in the same order as in HTML. Otherwise it will be visually inserted first only if it is in a large card (where "article-card__link-container" class doesn't exist). */
+    & [class*="date"] {
+      order: 0;
+    }
+  }
+
+  // -------------------------2------------------------- //
+  &__article {
+    /* Expand the container to make its contents occupy the full height. */
+    height: 100%;
+    /* A flex container to be able to visually insert elements in an order different from their HTML order. */
+    display: flex;
+    flex-direction: column;
+  }
+
+  // -------------------------2------------------------- //
+  &__content {
+    /* Expand all contents to occupy the full height. */
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    padding: 7% 10%;
+  }
+
+  // -------------------------2------------------------- //
+  &__heading {
+    margin-bottom: 2rem;
+    color: $text-color--dark;
+  }
+
+  // -------------------------2------------------------- //
+  & .para {
+    margin-bottom: 2rem;
+  }
+
+  // -------------------------2------------------------- //
+  &__date {
+    /* Visually insert the date first in content of large card. */
+    order: -1;
+    font-size: $font-size--sm;
+  }
+
+  // -------------------------2------------------------- //
+  &__btn {
+    @include filled-btn();
+  }
+
+  // -------------------------2------------------------- //
+  &__img-container {
+    /* Visually insert the image first in card. */
+    order: -1;
+    overflow: hidden;
+    background-color: $color-primary;
+  }
+
+  // -------------------------2------------------------- //
+  &__img {
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: $transition--1;
+  }
+
+  // -------------------------2------------------------- //
+  &:hover &__img {
+    transform: scale(1.1);
+    filter: grayscale(0);
+  }
+}

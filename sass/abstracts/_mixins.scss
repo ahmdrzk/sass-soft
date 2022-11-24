@@ -1,0 +1,300 @@
+@mixin link {
+  color: $link-color;
+  transition: $transition--1;
+
+  &:hover {
+    color: $text-color;
+  }
+}
+
+@mixin footer-link {
+  color: $link-color;
+  transition: $transition--1;
+
+  &:hover {
+    color: $color-secondary;
+  }
+}
+
+/* We use this hover effect when hovering over another or a parent element. */
+@mixin menu-btn-hover {
+  &::before {
+    transform: rotate(-45deg) translateX(75%) scaleX(1.5);
+  }
+
+  &::after {
+    transform: rotate(45deg) translateX(-75%) scaleX(1.5);
+  }
+}
+
+/* We use this hover effect when hovering over another or a parent element. */
+@mixin sub-list-hover {
+  z-index: 99;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-1rem);
+}
+
+/* We use this hover effect when hovering over another or a parent element. */
+@mixin arrow-before-btn-hover {
+  &::before {
+    transform: translateX(0.8rem);
+    opacity: 1;
+  }
+}
+
+@mixin arrow-before-btn {
+  position: relative;
+  width: max-content;
+  color: currentColor;
+  transition: $transition--1;
+
+  &::before {
+    content: "\279C";
+    position: absolute;
+    top: 0.6rem;
+    left: 1rem;
+    opacity: 0;
+    color: currentColor;
+    font-size: 80%;
+    transition: $transition--1;
+  }
+
+  &:hover {
+    @include arrow-before-btn-hover;
+  }
+}
+
+/* We use this hover effect when hovering over another or a parent element. */
+@mixin arrow-after-btn-hover {
+  transform: translateX(-1rem);
+
+  &::after {
+    opacity: 1;
+    transform: translateX(1rem);
+  }
+}
+
+@mixin arrow-after-btn {
+  position: relative;
+  white-space: nowrap;
+  transition: $transition--1;
+
+  &::after {
+    content: "\279C";
+    position: absolute;
+    top: 0.2rem;
+    opacity: 0;
+    transform: translateX(-0.5rem);
+    font-size: 1.5rem;
+    color: currentColor;
+    transition: $transition--1;
+  }
+
+  &:hover {
+    @include arrow-after-btn-hover;
+  }
+}
+
+@mixin arrow-after-static {
+  color: $color-primary--light-1;
+  white-space: nowrap;
+  font-weight: 500;
+
+  &::after {
+    content: "\279C";
+    margin-left: 0.5rem;
+    color: currentColor;
+  }
+}
+
+@mixin fill-a-btn {
+  position: relative;
+  /* To show text above pseudo element background. */
+  z-index: 1;
+  overflow: hidden;
+  padding: 0.8rem;
+
+  &::before {
+    content: "";
+    display: flex;
+    position: absolute;
+    /* The 4 dimensions peoperties have 0 value, to take full width and height. */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* To show pseudo element background below text. */
+    z-index: -1;
+    /* Start the transform from center bottom. */
+    transform-origin: 50% 100%;
+    transform: scaleY(0);
+    background-color: $color-secondary--light;
+    transition: $transition--4;
+  }
+
+  &:hover {
+    color: $color-white;
+  }
+
+  &:hover::before {
+    transform: scaleY(1);
+  }
+}
+
+@mixin filled-btn(
+  $bg-color: $color-white,
+  $bg-color-hover: $color-secondary--light,
+  $color: $text-color--light,
+  $color-hover: $color-white,
+  $font-size: $font-size--rg
+) {
+  @include fill-a-btn;
+  border: $border--1;
+  border-color: transparent;
+  border-radius: $border-radius--rg;
+  background-color: $bg-color;
+  padding: 2rem 4rem;
+  color: $color;
+  white-space: nowrap;
+  text-align: center;
+  font-size: $font-size;
+  font-weight: 500;
+  /* Transition for properties (border, color, transform). */
+  transition: $transition--1;
+
+  &::before {
+    border: $border--1;
+    border-color: $bg-color-hover;
+    background-color: $bg-color-hover;
+    /* Transition when hover off. */
+    transition: $transition--2;
+  }
+
+  &:hover {
+    border-color: $bg-color-hover;
+    color: $color-hover;
+  }
+
+  &:hover::before {
+    /* Transition when hover on. */
+    transition: $transition--4;
+  }
+}
+
+/* Main grid-template-columns definition that consists of 14 columns. */
+@mixin grid-columns {
+  grid-template-columns:
+    [full-start] minmax(5vw, 1fr) [center-start] repeat(12, [col-start] minmax(min-content, 10rem) [col-end])
+    [center-end] minmax(5vw, 1fr) [full-end];
+}
+
+@mixin header-h6-h2-para {
+  /* Placement in the section subgrid layout. */
+  grid-column: center-start / center-end;
+  /* Another subgrid definition for the header. */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+  column-gap: 2rem;
+  margin-bottom: 4rem;
+
+  & > .heading-6 {
+    /* Placement in the header subgrid layout. */
+    grid-column: 1;
+    grid-row: 1;
+    color: $color-primary--light-1;
+  }
+
+  & > .heading-2 {
+    /* Placement in the header subgrid layout. */
+    grid-column: 1;
+    grid-row: 2;
+    color: $color-white;
+  }
+
+  & > .para {
+    /* Placement in the header subgrid layout. */
+    grid-column: 2;
+    grid-row: 1 / span 2;
+
+    @include media-respond($bp-sm) {
+      grid-column: 1;
+      grid-row: 3;
+    }
+  }
+}
+
+@mixin header-h6-h2 {
+  /* Placement in the section subgrid layout. */
+  grid-column: center-start / center-end;
+  margin-bottom: 4rem;
+  text-align: center;
+
+  & > .heading-2 {
+    color: $text-color--dark;
+  }
+}
+
+/* Element that will include this mixin must be a containing block. */
+@mixin border-increase-animation($border-position: top, $border-height: 0.2rem) {
+  &::before {
+    content: "";
+    position: absolute;
+
+    @if ($border-position == top) {
+      top: -0.1rem;
+    } @else if ($border-position == bottom) {
+      bottom: 0;
+    }
+
+    /* Width increases to the right on hover off. */
+    right: auto;
+    left: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-bottom: $border-height solid $color-secondary;
+
+    @if ($border-position == top) {
+      transition: $transition--2;
+    } @else if ($border-position == bottom) {
+      transition: $transition--1;
+    }
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+
+  /* Width decreases to the right on hover off. */
+  &:not(:hover)::before {
+    right: 0;
+    left: auto;
+  }
+}
+
+@mixin media-respond($breakpoint) {
+  @if $breakpoint == $bp-xs {
+    @media only screen and (max-width: ($bp-xs / 16) * 1em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == $bp-sm {
+    @media only screen and (max-width: ($bp-sm / 16) * 1em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == $bp-lg {
+    @media only screen and (max-width: ($bp-lg / 16) * 1em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == $bp-xl {
+    @media only screen and (min-width: ($bp-xl / 16) * 1em) {
+      @content;
+    }
+  }
+}

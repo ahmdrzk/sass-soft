@@ -1,0 +1,60 @@
+/* COLORS */
+$color-primary: hsl(214, 94%, 19%);
+$color-primary--light-1: hsl(193, 87%, 53%);
+$color-primary--light-2: hsl(214, 20%, 50%);
+$color-primary--light-3: hsl(210, 33%, 96%);
+$color-primary--dark-1: hsl(264, 37%, 15%);
+$color-primary--dark-2: hsl(263, 35%, 10%);
+$color-secondary: hsl(5, 100%, 56%);
+$color-secondary--light: hsl(5, 97%, 63%);
+
+$color-white: hsl(0, 0%, 100%);
+$color-gray--light: hsl(0, 0%, 90%);
+$color-black: hsl(0, 0%, 0%);
+
+/* TEXT COLORS */
+$text-color: $color-primary--light-2;
+$text-color--light: $color-primary--light-1;
+$text-color--dark: $color-primary;
+
+$link-color: $color-primary;
+$link-color--dark: $color-primary--dark-1;
+
+/* FONTS */
+$font-size--sm: 1.5rem;
+$font-size--rg: 1.6rem;
+$font-size--lg: 1.8rem;
+
+$font-size-logo: 2.6rem;
+
+$heading-size--1: 9.6rem;
+$heading-size--2: 3rem;
+$heading-size--3: 2rem;
+$heading-size--4: 1.8rem;
+$heading-size--5: 1.6rem;
+$heading-size--6: 1.2rem;
+
+/* BORDERS */
+$border-color--1: $color-gray--light;
+
+$border--1: 0.1rem solid $border-color--1;
+
+$border-radius--rg: 0.5rem;
+$border-radius--lg: 1.5rem;
+
+/* SHADOWS */
+$shadow--1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+$shadow--2: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+/* TRANSITIONS */
+$transition--1: all 0.2s ease-in-out;
+$transition--2: all 0.3s ease-in-out;
+$transition--3: all 0.35s cubic-bezier(0.12, 0.845, 0.305, 1);
+$transition--4: all 0.3s cubic-bezier(0.52, 1.64, 0.37, 0.66);
+$transition--5: all 0.7s ease-in-out;
+
+/* BREAKPOINTS */
+$bp-xs: 500;
+$bp-sm: 600;
+$bp-lg: 1250;
+$bp-xl: 0;
